@@ -1,0 +1,2 @@
+# financeer
+Spreadsheets to graphs!
