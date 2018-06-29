@@ -21,7 +21,7 @@ let app = new Application({
 // add the "app" canvas to your document
 document.body.appendChild(app.view);
 loader
-  .add("images/timeflip.json")
+  .add("images/test/testtimeflip.json")
   .load(setup); //-------------------> call "setup" function once textures are loaded
 
 //Define variables that might be used in more
@@ -30,9 +30,21 @@ let state, clock, gameScene, gameOverScene, id;
 
 function setup() {
   gameScene = new Container();
-  app.stage.add(gameScene);
+  app.stage.addChild(gameScene);
   // make Sprites and add them to "gameScene"
   // Create alias for the texture atlas frame ids
-  id = resources["images/timeflip.json"].textures;
-  clock = new Sprite(id[""])
+  id = resources["images/test/testtimeflip.json"].textures;
+  //clock = new Sprite(id[""])
+  var clockframes = [];
+  for (var i=1;i<30;i++){
+    clockframes.push(PIXI.Texture.fromFrame('timeflip'+i+'.png'))
+  }
+  var anime = new Anime(clockframes);
+  anime.x = app.screen.width / 2;
+  anime.y = app.screen.height / 2;
+  anime.anchor.set(0.5);
+  anime.animationSpeed = 0.5;
+  anime.play();
+
+  app.stage.addChild(anime);
 }
